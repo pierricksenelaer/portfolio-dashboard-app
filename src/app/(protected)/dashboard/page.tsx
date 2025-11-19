@@ -1,6 +1,8 @@
 'use client';
 
 import { useAuth } from '@/hooks/useAuth';
+import PortfolioOverview from '@/components/dashboard/PortfolioOverview';
+import HistoricalPortfolioView from '@/components/dashboard/HistoricalPortfolioView';
 
 export default function DashboardPage() {
   const { logout, isAuthenticated } = useAuth(); 
@@ -25,9 +27,10 @@ export default function DashboardPage() {
       </header>
 
       <main className="grow">
-        <p className="text-gray-600 dark:text-gray-400">
-          Portfolio page
-        </p>
+        <div className="flex flex-col gap-8">
+            <PortfolioOverview />
+            <HistoricalPortfolioView />
+        </div>
       </main>
     </div>
   );
