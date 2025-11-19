@@ -95,11 +95,12 @@ export const usePortfolioMarketValue = () => {
  * For now, we only fetch mock historical data.
  */
 export const useHistoricalPortfolioValue = (from: string, to: string) => {
-  // We hardcode assets=[] here because the mock data is assumed to be the total portfolio value over time
-  // Note: In a real app, fetch prices for ALL assets at each date, then we sum them up
+  const assets: string[] = []; 
+  
   return useQuery({
-    queryKey: QUERY_KEYS.historicalPrices([], from, to),
-    queryFn: () => fetchPrices([], from, to),
-    // Recharts expects an array of {date, value}
+    queryKey: QUERY_KEYS.historicalPrices(assets, from, to),
+    queryFn: () => fetchPrices(assets, undefined, from, to), 
+    
+    staleTime: 1000 * 60 * 5,
   });
 };
