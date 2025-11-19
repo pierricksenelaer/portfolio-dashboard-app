@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { usePortfolioMarketValue } from '@/hooks/usePortfolioData';
 import DonutChart from '@/components/charts/DonutChart';
 import PositionsTable from '@/components/dashboard/PositionsTable';
-//import { Button } from '../common/Button'; // Assuming a simple Button component exists
+import { Button } from '@/components/global/Button';
 
 type ViewType = 'asset' | 'class';
 
@@ -57,24 +57,24 @@ export default function PortfolioOverview() {
         
         {/* Toggle Buttons */}
         <div className="flex space-x-2">
-          {/* <Button 
+          <Button 
             onClick={() => setView('asset')}
             variant={view === 'asset' ? 'primary' : 'outline'}
           >
             By Asset
-          </Button> */}
-          <button onClick={() => setView('asset')}>
+          </Button>
+          {/* <button onClick={() => setView('asset')}>
             By Asset
-          </button>
-          {/* <Button 
+          </button> */}
+          <Button 
             onClick={() => setView('class')}
             variant={view === 'class' ? 'primary' : 'outline'}
           >
             By Asset Class
-          </Button> */}
-          <button onClick={() => setView('class')}>
+          </Button>
+          {/* <button onClick={() => setView('class')}>
             By Asset Class 
-          </button>
+          </button> */}
         </div>
       </div>
       
