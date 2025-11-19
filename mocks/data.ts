@@ -14,13 +14,18 @@ const currentPortfolio: Position[] = [
   { id: 103, asset: 'a5', quantity: 10000, asOf: new Date().toISOString() }, // 10,000 GBP cash
 ];
 
-// Historical prices for BTC for the past 5 days (for Historical Chart)
+// Total portfolio value historical prices (for charting & filtering)
 const historicalPrices = [
-    { asset: 'BTC', price: 40000, asOf: '2025-11-14' },
-    { asset: 'BTC', price: 41000, asOf: '2025-11-15' },
-    { asset: 'BTC', price: 40500, asOf: '2025-11-16' },
-    { asset: 'BTC', price: 42000, asOf: '2025-11-17' },
-    { asset: 'BTC', price: 43000, asOf: '2025-11-18' }, // Today's price
+    // 1 Year Ago
+    { asset: 'TOTAL', price: 50000, asOf: '2024-11-19T00:00:00.000Z' }, 
+    // 6 Months Ago
+    { asset: 'TOTAL', price: 75000, asOf: '2025-05-19T00:00:00.000Z' },
+    // 30 Days Ago
+    { asset: 'TOTAL', price: 100000, asOf: '2025-10-20T00:00:00.000Z' },
+    // 7 Days Ago
+    { asset: 'TOTAL', price: 110000, asOf: '2025-11-12T00:00:00.000Z' },
+    // Today
+    { asset: 'TOTAL', price: 120000, asOf: '2025-11-19T00:00:00.000Z' },
 ];
 
 // Current prices for all assets

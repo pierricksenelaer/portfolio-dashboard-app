@@ -11,15 +11,25 @@ export const handlers = [
   // 2. GET /prices
   http.get('/prices', ({ request }) => {
     const url = new URL(request.url);
-    const asOf = url.searchParams.get('asOf');
     const from = url.searchParams.get('from');
 
-    // If 'from' is present, return historical data (for the chart)
     if (from) {
-        return HttpResponse.json(historicalPrices);
+        // Convert the string 'from' date to a Date object for comparison
+        const fromDate = new Date(from);
+        
+        // Filter the historical data array
+        const filteredPrices = historicalPrices.filter(priceEntry => {
+            const entryDate = new Date(priceEntry.asOf);
+            // Include entry if its date is greater than or equal to the 'from' date
+            return entryDate.getTime() >= fromDate.getTime(); 
+        });
+
+        console.log(`Filtering from: ${fromDate.toISOString()}, Results: ${filteredPrices.length}`);
+        
+        return HttpResponse.json(filteredPrices);
     }
     
-    // Default: Return current prices
+    // Default: Return current prices for non-historical requests
     return HttpResponse.json(currentPrices);
   }),
 
