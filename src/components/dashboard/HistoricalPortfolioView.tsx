@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { useHistoricalPortfolioValue } from '@/hooks/usePortfolioData';
 import HistoricalChart from '@/components/charts/HistoricalChart';
-//import { Button } from '../common/Button';
+import { Button } from '@/components/global/Button';
 
 type TimePeriod = '7d' | '30d' | '90d' | '1y';
 
@@ -62,26 +62,14 @@ export default function HistoricalPortfolioView() {
         {/* Time Period Selector Buttons */}
         <div className="flex space-x-2">
           {Object.keys(periodDays).map((key) => (
-            // <Button 
-            //   key={key}
-            //   onClick={() => setPeriod(key as TimePeriod)}
-            //   // Assuming you style 'primary' and 'outline' for selected/unselected states
-            //   variant={period === key ? 'primary' : 'outline'}
-            //   className="px-3 py-1 text-sm"
-            // >
-            //   {key}
-            // </Button>
-            <button
+            <Button 
               key={key}
               onClick={() => setPeriod(key as TimePeriod)}
-              className={`px-3 py-1 text-sm rounded-md focus:outline-none ${
-                period === key
-                  ? 'bg-blue-600 text-white hover:bg-blue-700'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-              }`} 
+              variant={period === key ? 'primary' : 'outline'}
+              className="px-3 py-1 text-sm"
             >
-              {key} 
-            </button>
+              {key}
+            </Button>
           ))}
         </div>
       </div>
