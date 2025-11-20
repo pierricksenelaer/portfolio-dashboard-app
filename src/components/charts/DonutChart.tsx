@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   PieChart, 
   Pie, 
@@ -17,17 +17,20 @@ interface DonutChartProps {
   totalValue: number;
 }
 
-// These are hardcoded hex colors that map to the new theme primary color,
-// or a selection of other distinct colors to ensure visibility.
-// For demonstration, we mix theme-primary with a couple of neutral/secondary colors.
-const THEME_COLORS = [
-  '#3b82f6', // theme-primary-500 equivalent (Blue)
-  '#22c55e', // secondary color (Green)
-  '#ef4444', // destructive color (Red)
-  '#f59e0b', // warning color (Yellow)
-  '#8b5cf6', // tertiary color (Violet)
-  '#ec4899', // alternative color (Pink)
+// Define the color string using the CSS variable
+const PRIMARY_THEME_COLOR = 'rgb(var(--color-primary-500))';
+
+// Secondary colors are kept fixed (Green, Red, etc.) as they are distinct for data visualization
+const SECONDARY_COLORS = [
+  '#22c55e', // Green
+  '#ef4444', // Red
+  '#f59e0b', // Yellow
+  '#8b5cf6', // Violet
+  '#ec4899', // Pink
 ];
+
+// The final array starts with the primary theme color
+const THEME_COLORS = [PRIMARY_THEME_COLOR, ...SECONDARY_COLORS]
 
 // Custom Tooltip for displaying Name and Value
 const CustomTooltip = ({ active, payload }: any) => {
@@ -52,6 +55,21 @@ const CustomTooltip = ({ active, payload }: any) => {
 export default function DonutChart({ data, totalValue }: DonutChartProps) {
   // Add totalValue to each item for percentage calculation in tooltip
   const dataWithTotal = data.map(item => ({ ...item, totalValue }));
+
+  const [textColor, setTextColor] = useState('black'); // Safe initial value
+
+  useEffect(() => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const foregroundColor = rootStyles.getPropertyValue('--foreground').trim();
+    
+    if (foregroundColor) {
+      if (foregroundColor.includes(' ')) {
+        setTextColor(`rgb(${foregroundColor})`);
+      } else {
+        setTextColor(foregroundColor);
+      }
+    }
+  }, []);
 
   return (
     <div className="w-full h-80">
@@ -83,7 +101,8 @@ export default function DonutChart({ data, totalValue }: DonutChartProps) {
             y="50%"
             textAnchor="middle"
             dominantBaseline="middle"
-            className="text-lg font-bold dark:text-white"
+            className="text-xl font-bold"
+            fill={textColor}
           >
             {new Intl.NumberFormat('en-US', {
               style: 'currency',
