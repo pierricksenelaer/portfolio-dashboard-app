@@ -79,8 +79,8 @@ export default function DonutChart({ data, totalValue }: DonutChartProps) {
             data={dataWithTotal}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={90}
+            innerRadius={110}
+            outerRadius={140}
             paddingAngle={5}
             dataKey="value"
             labelLine={false}
@@ -101,7 +101,7 @@ export default function DonutChart({ data, totalValue }: DonutChartProps) {
             y="50%"
             textAnchor="middle"
             dominantBaseline="middle"
-            className="text-xl font-bold"
+            className="text-2xl font-bold"
             fill={textColor}
           >
             {new Intl.NumberFormat('en-US', {
