@@ -49,7 +49,9 @@ export default function PositionsTable({ data, totalValue }: PositionsTableProps
           const percentage = totalValue > 0 ? (item.marketValue / totalValue) * 100 : 0;
           return (
             <tr key={index}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+              <td 
+                className="px-6 py-4 whitespace-nowrap text-sm font-medium text-theme-primary-600 dark:text-theme-primary-500"
+              >
                 {item.name}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">

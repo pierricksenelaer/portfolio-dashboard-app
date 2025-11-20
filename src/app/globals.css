@@ -3,20 +3,40 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* WHITE LABEL PRIMARY COLORS */
+  /* Base Blue Palette (RGB values, NOT HEX) */
+  --color-primary-50: 239 246 255;  /* blue-100 */
+  --color-primary-100: 219 234 254; /* blue-200 */
+  --color-primary-500: 59 130 246;  /* blue-500 (Base) */
+  --color-primary-600: 37 99 235;  /* blue-600 */
+  --color-primary-700: 30 64 175;  /* blue-700 (Hover/Dark) */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    /* DARK MODE PRIMARY OVERRIDES */
+    --color-primary-500: 96 165 250; /* blue-400 (Base for Primary) */
+    --color-primary-700: 59 130 246; /* blue-500 (Hover/Dark) */
   }
+}
+
+/* Map Custom Variables into the Tailwind Theme ⬇️ */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Map a new color name ('theme-primary') to custom variables */
+  --color-theme-primary-50: var(--color-primary-50);
+  --color-theme-primary-100: var(--color-primary-100);
+  --color-theme-primary-500: var(--color-primary-500);
+  --color-theme-primary-600: var(--color-primary-600);
+  --color-theme-primary-700: var(--color-primary-700);
 }
 
 body {

@@ -1,3 +1,5 @@
+// HistoricalCharts.tsx
+
 import React from 'react';
 import { 
   AreaChart, 
@@ -49,6 +51,9 @@ const formatCurrency = (value: number) => {
 
 
 export default function HistoricalChart({ data }: HistoricalChartProps) {
+  // Use a reliable theme color variable for Recharts properties
+  const themePrimaryColor = 'rgb(var(--color-primary-500))';
+
   return (
     <div className="w-full h-80">
       <ResponsiveContainer width="100%" height="100%">
@@ -75,8 +80,8 @@ export default function HistoricalChart({ data }: HistoricalChartProps) {
           <Area 
             type="monotone" 
             dataKey="price" 
-            stroke="#3b82f6" // Tailwind blue-500
-            fill="#3b82f6" 
+            stroke={themePrimaryColor} 
+            fill={themePrimaryColor} 
             fillOpacity={0.3}
             name="Portfolio Value"
           />

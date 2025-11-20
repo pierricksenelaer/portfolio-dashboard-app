@@ -63,18 +63,12 @@ export default function PortfolioOverview() {
           >
             By Asset
           </Button>
-          {/* <button onClick={() => setView('asset')}>
-            By Asset
-          </button> */}
           <Button 
             onClick={() => setView('class')}
             variant={view === 'class' ? 'primary' : 'outline'}
           >
             By Asset Class
           </Button>
-          {/* <button onClick={() => setView('class')}>
-            By Asset Class 
-          </button> */}
         </div>
       </div>
       

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { Button } from '@/components/global/Button';
 
 export default function LoginPage() {
   const { login, isAuthenticated } = useAuth();
@@ -34,7 +35,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Username (user)
+              Username
             </label>
             <input
               id="username"
@@ -42,12 +43,12 @@ export default function LoginPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-theme-primary-500 focus:border-theme-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Password (password)
+              Password
             </label>
             <input
               id="password"
@@ -55,18 +56,19 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-theme-primary-500 focus:border-theme-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
           </div>
           {error && (
             <p className="text-sm text-red-500">{error}</p>
           )}
-          <button
+          <Button
             type="submit"
-            className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            variant='outline'
+            className="w-full px-4 py-2 text-white bg-theme-primary-600 rounded-md hover:bg-theme-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-primary-500"
           >
             Sign In
-          </button>
+          </Button>
         </form>
       </div>
     </div>

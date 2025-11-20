@@ -17,8 +17,17 @@ interface DonutChartProps {
   totalValue: number;
 }
 
-// Color scheme for the chart
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF', '#FF0077'];
+// These are hardcoded hex colors that map to the new theme primary color,
+// or a selection of other distinct colors to ensure visibility.
+// For demonstration, we mix theme-primary with a couple of neutral/secondary colors.
+const THEME_COLORS = [
+  '#3b82f6', // theme-primary-500 equivalent (Blue)
+  '#22c55e', // secondary color (Green)
+  '#ef4444', // destructive color (Red)
+  '#f59e0b', // warning color (Yellow)
+  '#8b5cf6', // tertiary color (Violet)
+  '#ec4899', // alternative color (Pink)
+];
 
 // Custom Tooltip for displaying Name and Value
 const CustomTooltip = ({ active, payload }: any) => {
@@ -61,7 +70,7 @@ export default function DonutChart({ data, totalValue }: DonutChartProps) {
             {dataWithTotal.map((entry, index) => (
               <Cell 
                 key={`cell-${index}`} 
-                fill={COLORS[index % COLORS.length]} 
+                fill={THEME_COLORS[index % THEME_COLORS.length]} 
                 strokeWidth={2}
               />
             ))}
