@@ -51,28 +51,30 @@ const formatCurrency = (value: number) => {
 
 
 export default function HistoricalChart({ data }: HistoricalChartProps) {
-  // Use a reliable theme color variable for Recharts properties
   const themePrimaryColor = 'rgb(var(--color-primary-500))';
-
+  
+  const foregroundColor = 'var(--foreground)'; // Uses the dynamically set text/axis color
+  
   return (
     <div className="w-full h-80">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+          margin={{ top: 10, right: 30, left: 30, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-gray-700" />
           
           <XAxis 
             dataKey="name" 
             tickFormatter={(tick) => new Date(tick).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-            stroke="#6b7280" // Tailwind gray-500
+            stroke={foregroundColor} 
           />
           
           <YAxis 
             tickFormatter={formatCurrency} 
             domain={['auto', 'auto']}
-            stroke="#6b7280" // Tailwind gray-500
+            
+            stroke={foregroundColor}
           />
           
           <Tooltip content={<CustomTooltip />} />
