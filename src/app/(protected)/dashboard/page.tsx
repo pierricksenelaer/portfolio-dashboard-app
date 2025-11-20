@@ -5,10 +5,26 @@ import PortfolioOverview from '@/components/dashboard/PortfolioOverview';
 import HistoricalPortfolioView from '@/components/dashboard/HistoricalPortfolioView';
 
 export default function DashboardPage() {
-  const { logout, isAuthenticated } = useAuth(); 
+  const { logout, isAuthenticated, isReady } = useAuth(); 
+
+  if (!isReady) {
+    return (
+      <div className="flex flex-col min-h-screen p-8 bg-gray-50 dark:bg-gray-900">
+        <div className="text-center text-gray-500 dark:text-gray-400 mt-20">
+          Loading user status...
+        </div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
-    return null; 
+    return (
+      <div className="flex flex-col min-h-screen p-8 bg-gray-50 dark:bg-gray-900">
+        <div className="text-center text-red-500 mt-20">
+          Access Denied. Redirecting...
+        </div>
+      </div>
+    );
   }
 
   return (
